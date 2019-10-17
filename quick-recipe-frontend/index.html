@@ -2,10 +2,25 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <title>Quick Recipe</title>
   </head>
   <body>
+    <div class="container">
+      <h1 id="main-title">Quick Recipe</h1>
+      <div class="form">
+        <form id="new-recipe-form">
+          <input type="text" name="recipe-title" value="Recipe Title">
+          <input type="text" name="image-link" value="Image Link">
+          <input type="text" name="recipe-link" value="Recipe Link">
+          <input type="text" name="ingredient" value="Ingredient">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+      <div id="recipe-card-container">
 
+      </div>
+    </div>
     <script type="application/javascript" src="src/index.js" charset="utf-8"></script>
   </body>
 
