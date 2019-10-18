@@ -74,10 +74,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 function addRecipe() {
-  console.log(event.target.parentElement)
-  // const form = event.target.parentElement
+  // console.log(event.target.parentElement)
+  const form = event.target.parentElement
+  // console.log(form[3].value.split(' '))
+  const ingredients = form[3].value.split(', ')
+  const recipe = new Recipe(form[0].value, form[1].value, form[2].value, ingredients)
+  const configurationObject = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      "title": form[0].value,
+      "image_link": form[1].value,
+      "recipe_link": form[2].value,
+      "ingredients": ingredients
+    })
+  };
+  fetch(RECIPES_URL, configurationObject)
+    .then(response => response.json())
+    .then(json => recipe.createRecipeCard())
+    .catch(error => console.log("Error: " + error))
+  // console.log(recipe)
 }
-
-// const recipes = getRecipes();
-// console.log(getRecipes())
-// recipes[0].createRecipeCard()
