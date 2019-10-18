@@ -1,4 +1,5 @@
 const RECIPES_URL = "http://localhost:3000/recipes"
+const formSubmit = document.getElementById("form-submit")
 
 class Recipe {
   constructor(title, imageLink, recipeLink, ingredients) {
@@ -12,25 +13,29 @@ class Recipe {
     const cardContainer = document.getElementById('recipe-card-container')
     const card = document.createElement('div')
     card.className = "card"
-    const title = document.createElement('h1')
-    title.innerHTML = this.title
-    card.appendChild(title)
     const img = document.createElement('img')
     img.src = this.imageLink
     card.appendChild(img)
-    const link = document.createElement('a')
-    link.src = this.recipeLink
-    card.appendChild(link)
+    const cardInfo = document.createElement('div')
+    cardInfo.className = "card-info"
+    const title = document.createElement('h1')
+    title.innerHTML = this.title
+    cardInfo.appendChild(title)
     const ingHeader = document.createElement('h3')
     ingHeader.innerHTML = "Ingredients:"
-    card.appendChild(ingHeader)
+    cardInfo.appendChild(ingHeader)
     const ul = document.createElement('ul')
     for (ingredient of this.ingredients) {
       let li = document.createElement('li')
       li.innerHTML = ingredient
       ul.appendChild(li)
     }
-    card.appendChild(ul)
+    cardInfo.appendChild(ul)
+    const link = document.createElement('a')
+    link.href = this.recipeLink
+    link.innerHTML = "View Recipe Here"
+    cardInfo.appendChild(link)
+    card.appendChild(cardInfo)
     cardContainer.appendChild(card)
   }
 
@@ -54,13 +59,24 @@ function createRecipes(recipes) {
 
 function addRecipesToDom(recipeArray) {
   for (recipe of recipeArray) {
-    console.log(recipe)
     recipe.createRecipeCard()
   }
-  console.log("finished")
 }
 
-getRecipes()
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("loaded")
+  getRecipes();
+  formSubmit.addEventListener("click", function() {
+    event.preventDefault();
+    addRecipe();
+  })
+})
+
+
+function addRecipe() {
+  console.log(event.target.parentElement)
+  // const form = event.target.parentElement
+}
 
 // const recipes = getRecipes();
 // console.log(getRecipes())
