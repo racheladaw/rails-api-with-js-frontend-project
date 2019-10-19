@@ -1,6 +1,8 @@
 const RECIPES_URL = "http://localhost:3000/recipes"
 const formSubmit = document.getElementById("form-submit")
-const addRecipeButton = document.getElementById("form-show-button")
+const formButtons = document.getElementById("form-show-buttons")
+const addRecipeButton = document.getElementById("add-recipe")
+const dropDownButton = document.getElementById("filter-button")
 
 class Recipe {
   constructor(title, imageLink, recipeLink, ingredients) {
@@ -73,7 +75,11 @@ document.addEventListener("DOMContentLoaded", function() {
   })
   addRecipeButton.addEventListener("click", function() {
     toggleForm();
-    toggleButton();
+    toggleButtons();
+  })
+  dropDownButton.addEventListener("click", function() {
+    toggleDropDown();
+    toggleButtons();
   })
 })
 
@@ -86,11 +92,20 @@ function toggleForm() {
   }
 }
 
-function toggleButton() {
-  if (addRecipeButton.classList.contains("hidden")) {
-    addRecipeButton.classList.remove("hidden");
+function toggleDropDown() {
+  const dropDown = document.getElementById("filter-drop-down")
+  if (dropDown.classList.contains("hidden")) {
+    dropDown.classList.remove("hidden");
   } else {
-    addRecipeButton.className += " hidden";
+    dropDown.className += " hidden"
+  }
+}
+
+function toggleButtons() {
+  if (formButtons.classList.contains("hidden")) {
+    formButtons.classList.remove("hidden");
+  } else {
+    formButtons.className += " hidden";
   }
 }
 
@@ -118,7 +133,7 @@ function addRecipe() {
     .then(response => response.json())
     .then(function(json) {
       recipe.createRecipeCard();
-      toggleButton();
+      toggleButtons();
       toggleForm();
     })
     .catch(error => console.log("Error: " + error))

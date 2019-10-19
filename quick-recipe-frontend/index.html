@@ -8,8 +8,15 @@
   <body>
     <div class="container">
       <h1 id="main-title">Quick Recipe</h1>
-      <div class="form-show-button">
-        <button id="form-show-button" type="button" name="button">Click Here to Add a Recipe</button>
+      <div id="form-show-buttons">
+        <button class="button" id="add-recipe" type="button" name="button">Click Here to Add a Recipe</button>
+        <span id="or"> OR </span>
+        <button class="button" id="filter-button" type="button" name="button">Get a Random Recipe by Ingredient</button>
+      </div>
+      <div id="filter-drop-down" class="hidden">
+        <select id="filter-dropdown">
+
+        </select>
       </div>
       <div class="form">
         <form id="new-recipe-form" class="hidden">
@@ -20,7 +27,7 @@
           <label for="recipe-link">Recipe Link</label><br>
           <input type="text" name="recipe-link"><br>
           <label for="ingredients">Ingredients</label><br>
-          <input type="text" name="ingredients"><br>
+          <input type="text" name="ingredients" placeholder="Enter ingredients separated by a comma and a space..."><br>
           <input id="form-submit" type="submit" value="Add Recipe">
         </form>
       </div>

@@ -36,12 +36,12 @@
   text-align: center;
 }
 
-.form-show-button {
+#form-show-buttons {
   cursor: pointer;
   text-align: center;
 }
 
-#form-show-button {
+.button {
   padding: 12px 24px;
   border: 2px solid #ccddff;
   border-radius: 4px;
@@ -51,7 +51,7 @@
   transition-duration: 0.4s;
 }
 
-#form-show-button:hover {
+.button:hover {
   background-color: #99bbff;
   color: white;
 }
@@ -79,4 +79,12 @@ input[type=submit] {
   font-size: 16px;
   padding: 15px;
   cursor: pointer;
+}
+
+#or {
+  padding: 10px;
+}
+
+#filter-drop-down {
+  text-align: center;
 }
