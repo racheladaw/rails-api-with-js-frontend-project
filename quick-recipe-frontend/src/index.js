@@ -4,6 +4,8 @@ const formSubmit = document.getElementById("form-submit")
 const formButtons = document.getElementById("form-show-buttons")
 const addRecipeButton = document.getElementById("add-recipe")
 const dropDownButton = document.getElementById("filter-button")
+const ingredientDropDown = document.getElementById("filter-dropdown")
+const cardContainer = document.getElementById('recipe-card-container')
 
 class Recipe {
   constructor(title, imageLink, recipeLink, ingredients) {
@@ -14,7 +16,6 @@ class Recipe {
   }
 
   createRecipeCard() {
-    const cardContainer = document.getElementById('recipe-card-container')
     const card = document.createElement('div')
     card.className = "card"
     const img = document.createElement('img')
@@ -68,7 +69,7 @@ function addRecipesToDom(recipeArray) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  console.log("loaded")
+  console.log("DOMloaded")
   getRecipes();
   formSubmit.addEventListener("click", function() {
     event.preventDefault();
@@ -82,6 +83,9 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleDropDown();
     toggleButtons();
   })
+  ingredientDropDown.addEventListener("change", function() {
+    getRandomRecipeByIngredient();
+  })
 })
 
 function toggleForm() {
@@ -91,6 +95,10 @@ function toggleForm() {
   } else {
     form.className += " hidden";
   }
+}
+
+function clearRecipes() {
+  cardContainer.innerHTML = ""
 }
 
 function toggleDropDown() {
@@ -109,12 +117,11 @@ function getIngredients() {
 
 function populateIngredientDropDown(data) {
   console.log(data)
-  const selectMenu = document.getElementById("filter-dropdown")
   for (ingredient of data) {
     let option = document.createElement("option")
     option.value = ingredient.attributes.name
     option.innerHTML = ingredient.attributes.name
-    selectMenu.appendChild(option)
+    ingredientDropDown.appendChild(option)
   }
 }
 
@@ -156,4 +163,28 @@ function addRecipe() {
     .catch(error => console.log("Error: " + error))
 
   // console.log(recipe)
+}
+
+function getRandomRecipeByIngredient() {
+  clearRecipes();
+  const ingredient = event.target.value
+  console.log(ingredient)
+  // let url = new URL(RECIPE_URL)
+  // const params = {ingredient_name: ingredient}
+  // url.search = new URLSearchParams(params)
+  // console.log(url)
+  fetch(RECIPES_URL + `/${ingredient}`).then(response => response.json()).then(json => loadRandomRecipe(json.data.attributes))
+    // params = {lat:35.696233, long:139.570431}
+    // Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+    // fetch(url).then(/* … */)
+  // fetch(JOIN_TABLE_URL).then(response => response.json()).then(json => console.log(json))
+}
+
+function loadRandomRecipe(recipe) {
+  let ingredientArray = [];
+  for (ingredient of recipe.ingredients) {
+    ingredientArray.push(ingredient.name)
+  }
+  const r = new Recipe(recipe.title, recipe.image_link, recipe.recipe_link, ingredientArray)
+  r.createRecipeCard();
 }
