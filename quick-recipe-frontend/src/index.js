@@ -116,7 +116,7 @@ function getIngredients() {
 }
 
 function populateIngredientDropDown(data) {
-  console.log(data)
+  data.sort((a, b) => (a.attributes.name > b.attributes.name) ? 1 : -1)
   for (ingredient of data) {
     let option = document.createElement("option")
     option.value = ingredient.attributes.name
@@ -135,9 +135,7 @@ function toggleButtons() {
 
 
 function addRecipe() {
-  // console.log(event.target.parentElement)
   const form = event.target.parentElement
-  // console.log(form[3].value.split(' '))
   const ingredients = form[3].value.split(', ')
   const recipe = new Recipe(form[0].value, form[1].value, form[2].value, ingredients)
   const configurationObject = {
@@ -162,22 +160,12 @@ function addRecipe() {
     })
     .catch(error => console.log("Error: " + error))
 
-  // console.log(recipe)
 }
 
 function getRandomRecipeByIngredient() {
   clearRecipes();
   const ingredient = event.target.value
-  console.log(ingredient)
-  // let url = new URL(RECIPE_URL)
-  // const params = {ingredient_name: ingredient}
-  // url.search = new URLSearchParams(params)
-  // console.log(url)
   fetch(RECIPES_URL + `/${ingredient}`).then(response => response.json()).then(json => loadRandomRecipe(json.data.attributes))
-    // params = {lat:35.696233, long:139.570431}
-    // Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-    // fetch(url).then(/* … */)
-  // fetch(JOIN_TABLE_URL).then(response => response.json()).then(json => console.log(json))
 }
 
 function loadRandomRecipe(recipe) {
