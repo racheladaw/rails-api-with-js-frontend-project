@@ -1,4 +1,5 @@
 const RECIPES_URL = "http://localhost:3000/recipes"
+const INGREDIENTS_URL = "http://localhost:3000/ingredients"
 const formSubmit = document.getElementById("form-submit")
 const formButtons = document.getElementById("form-show-buttons")
 const addRecipeButton = document.getElementById("add-recipe")
@@ -98,6 +99,22 @@ function toggleDropDown() {
     dropDown.classList.remove("hidden");
   } else {
     dropDown.className += " hidden"
+  }
+  getIngredients();
+}
+
+function getIngredients() {
+  fetch(INGREDIENTS_URL).then(response => response.json()).then(json => populateIngredientDropDown(json.data))
+}
+
+function populateIngredientDropDown(data) {
+  console.log(data)
+  const selectMenu = document.getElementById("filter-dropdown")
+  for (ingredient of data) {
+    let option = document.createElement("option")
+    option.value = ingredient.attributes.name
+    option.innerHTML = ingredient.attributes.name
+    selectMenu.appendChild(option)
   }
 }
 
