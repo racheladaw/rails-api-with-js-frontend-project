@@ -16,11 +16,67 @@
 
 #main-title {
   text-align: center;
-  color: blue;
+  color: #47d147;
+  font-size: 2.5em;
+  text-shadow: 3px 2px black;
 }
 
 #recipe-card-container {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+}
+
+.hidden {
+  display: none;
+}
+
+.form {
+  display: block;
+  text-align: center;
+}
+
+.form-show-button {
+  cursor: pointer;
+  text-align: center;
+}
+
+#form-show-button {
+  padding: 12px 24px;
+  border: 2px solid #ccddff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+#form-show-button:hover {
+  background-color: #99bbff;
+  color: white;
+}
+
+input[type=text] {
+  width: 30%;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border-radius: 3px;
+  font-size: 1em;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+label {
+  font-size: 1.2em;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  color: #00004d;
+}
+
+input[type=submit] {
+  background-color: #ff471a;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  font-size: 16px;
+  padding: 15px;
+  cursor: pointer;
 }

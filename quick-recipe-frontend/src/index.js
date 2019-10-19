@@ -1,5 +1,6 @@
 const RECIPES_URL = "http://localhost:3000/recipes"
 const formSubmit = document.getElementById("form-submit")
+const addRecipeButton = document.getElementById("form-show-button")
 
 class Recipe {
   constructor(title, imageLink, recipeLink, ingredients) {
@@ -70,7 +71,28 @@ document.addEventListener("DOMContentLoaded", function() {
     event.preventDefault();
     addRecipe();
   })
+  addRecipeButton.addEventListener("click", function() {
+    toggleForm();
+    toggleButton();
+  })
 })
+
+function toggleForm() {
+  const form = formSubmit.parentElement;
+  if (form.classList.contains("hidden")) {
+    form.classList.remove("hidden");
+  } else {
+    form.className += " hidden";
+  }
+}
+
+function toggleButton() {
+  if (addRecipeButton.classList.contains("hidden")) {
+    addRecipeButton.classList.remove("hidden");
+  } else {
+    addRecipeButton.className += " hidden";
+  }
+}
 
 
 function addRecipe() {
@@ -94,7 +116,12 @@ function addRecipe() {
   };
   fetch(RECIPES_URL, configurationObject)
     .then(response => response.json())
-    .then(json => recipe.createRecipeCard())
+    .then(function(json) {
+      recipe.createRecipeCard();
+      toggleButton();
+      toggleForm();
+    })
     .catch(error => console.log("Error: " + error))
+
   // console.log(recipe)
 }

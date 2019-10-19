@@ -8,13 +8,20 @@
   <body>
     <div class="container">
       <h1 id="main-title">Quick Recipe</h1>
+      <div class="form-show-button">
+        <button id="form-show-button" type="button" name="button">Click Here to Add a Recipe</button>
+      </div>
       <div class="form">
-        <form id="new-recipe-form">
-          <input type="text" name="recipe-title" placeholder="Recipe Title">
-          <input type="text" name="image-link" placeholder="Image Link">
-          <input type="text" name="recipe-link" placeholder="Recipe Link">
-          <input type="text" name="ingredients" placeholder="Ingredients">
-          <input id="form-submit" type="submit" value="Submit">
+        <form id="new-recipe-form" class="hidden">
+          <label for="recipe-title">Title</label><br>
+          <input type="text" name="recipe-title"><br>
+          <label for="image-link">Image Link</label><br>
+          <input type="text" name="image-link"><br>
+          <label for="recipe-link">Recipe Link</label><br>
+          <input type="text" name="recipe-link"><br>
+          <label for="ingredients">Ingredients</label><br>
+          <input type="text" name="ingredients"><br>
+          <input id="form-submit" type="submit" value="Add Recipe">
         </form>
       </div>
       <div id="recipe-card-container">
