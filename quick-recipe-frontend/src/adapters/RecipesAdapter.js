@@ -12,4 +12,8 @@ class RecipesAdapter {
       .then(response => response.json())
       .catch(error => console.log("Error: " + error))
   }
+
+  getRecipeByIngredient(ingredient) {
+    return fetch(this.baseURL + `/${ingredient}`).then(response => response.json())
+  }
 }

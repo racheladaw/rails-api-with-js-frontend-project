@@ -30,10 +30,10 @@ class Recipes {
     this.dropDownButton.addEventListener("click", function() {
       this.toggleDropDown();
       this.toggleButtons();
-    })
-    // ingredientDropDown.addEventListener("change", function() {
-    // Recipe.getRandomRecipeByIngredient();
-    // })
+    }.bind(this))
+    this.ingredientDropDown.addEventListener("change", function() {
+      this.getAndLoadRandomRecipeByIngredient();
+    }.bind(this))
   }
 
   createRecipes(recipes) {
@@ -100,6 +100,25 @@ class Recipes {
     } else {
       dropDown.className += " hidden"
     }
-    Ingredient.getIngredients();
+    new Ingredients()
+  }
+
+  clearRecipes() {
+    this.cardContainer.innerHTML = "";
+  }
+
+  getAndLoadRandomRecipeByIngredient() {
+    this.clearRecipes();
+    const ingredient = event.target.value
+    this.adapter.getRecipeByIngredient(ingredient).then(json => this.loadRandomRecipe(json.data.attributes))
+  }
+
+  loadRandomRecipe(recipe) {
+    let ingredientArray = [];
+    for (let ingredient of recipe.ingredients) {
+      ingredientArray.push(ingredient.name)
+    }
+    const r = new Recipe(recipe.title, recipe.image_link, recipe.recipe_link, ingredientArray)
+    r.createRecipeCard();
   }
 }
