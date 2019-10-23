@@ -1,13 +1,42 @@
 .card {
   /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 4px 4px 8px 0 #bd910f;
   transition: 0.3s;
   width: 32%;
   margin-top: 20px;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .card-info {
   padding: 3px 20px;
+}
+
+.card-info h1 {
+  text-align: center;
+  text-shadow: 1px 1px #c99e1d;
+  padding-bottom: 5px;
+  border-bottom: 1px solid grey;
+}
+
+.card-info ul {
+  list-style-type: circle;
+}
+
+.card-info a {
+  display: block;
+  text-align: center;
+  color: #b83d14;
+  font-family: helvetica;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.card-info a:hover {
+  text-decoration: underline;
+}
+
+.card-info a:active {
+  color: black;
 }
 
 .card img {
@@ -16,9 +45,9 @@
 
 #main-title {
   text-align: center;
-  color: #47d147;
+  color: #dedbd3;
   font-size: 2.5em;
-  text-shadow: 3px 2px black;
+  text-shadow: 3px 2px #f0c442;
 }
 
 #recipe-card-container {
@@ -43,16 +72,17 @@
 
 .button {
   padding: 12px 24px;
-  border: 2px solid #ccddff;
+  border: 2px solid #f0c442;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 .button:hover {
-  background-color: #99bbff;
+  background-color: #f0c442;
   color: white;
 }
 
@@ -83,6 +113,9 @@ input[type=submit] {
 
 #or {
   padding: 10px;
+  text-shadow: 1px 1px #b4b4b4;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 1.5em;
 }
 
 #filter-drop-down {
