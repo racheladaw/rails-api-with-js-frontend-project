@@ -98,11 +98,11 @@ input[type=text] {
 label {
   font-size: 1.2em;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  color: #00004d;
+  color: #863013;
 }
 
 input[type=submit] {
-  background-color: #ff471a;
+  background-color: #e26136;
   color: white;
   border-radius: 8px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -120,4 +120,5 @@ input[type=submit] {
 
 #filter-drop-down {
   text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
