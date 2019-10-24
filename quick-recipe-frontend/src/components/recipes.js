@@ -17,13 +17,11 @@ class Recipes {
   }
 
   bindEventListeners() {
-    console.log(this)
     this.formSubmit.addEventListener("click", function() {
       event.preventDefault();
       this.addRecipe();
     }.bind(this))
     this.addRecipeButton.addEventListener("click", function() {
-      // console.log(this)
       this.toggleForm();
       this.toggleButtons();
     }.bind(this))
@@ -36,13 +34,18 @@ class Recipes {
     }.bind(this))
   }
 
+  createArrayOfRecipeIngredients(ingredients) {
+    let ingredientArray = [];
+    for (let ingredient of ingredients) {
+      ingredientArray.push(ingredient.name);
+    }
+    return ingredientArray
+  }
+
   createRecipes(recipes) {
     for (let recipe of recipes) {
-      let ingredientArray = [];
-      for (let ingredient of recipe.attributes.ingredients) {
-        ingredientArray.push(ingredient.name)
-      }
-      this.recipes.push(new Recipe(recipe.attributes.title, recipe.attributes.image_link, recipe.attributes.recipe_link, ingredientArray))
+      let ingredients = this.createArrayOfRecipeIngredients(recipe.attributes.ingredients)
+      this.recipes.push(new Recipe(recipe.attributes.title, recipe.attributes.image_link, recipe.attributes.recipe_link, ingredients))
     }
   }
 
@@ -76,31 +79,27 @@ class Recipes {
     }.bind(this))
   }
 
+  hideOrShowElement(element) {
+    if (element.classList.contains("hidden")) {
+      element.classList.remove("hidden");
+    } else {
+      element.className += " hidden";
+    }
+  }
+
   toggleForm() {
     const form = this.formSubmit.parentElement;
-    if (form.classList.contains("hidden")) {
-      form.classList.remove("hidden");
-    } else {
-      form.className += " hidden";
-    }
+    this.hideOrShowElement(form);
   }
 
   toggleButtons() {
-    if (this.formButtons.classList.contains("hidden")) {
-      this.formButtons.classList.remove("hidden");
-    } else {
-      this.formButtons.className += " hidden";
-    }
+    this.hideOrShowElement(this.formButtons);
   }
 
   toggleDropDown() {
-    const dropDown = document.getElementById("filter-drop-down")
-    if (dropDown.classList.contains("hidden")) {
-      dropDown.classList.remove("hidden");
-    } else {
-      dropDown.className += " hidden"
-    }
-    new Ingredients()
+    const dropDown = document.getElementById("filter-drop-down");
+    this.hideOrShowElement(dropDown);
+    new Ingredients();
   }
 
   clearRecipes() {
@@ -114,11 +113,8 @@ class Recipes {
   }
 
   loadRandomRecipe(recipe) {
-    let ingredientArray = [];
-    for (let ingredient of recipe.ingredients) {
-      ingredientArray.push(ingredient.name)
-    }
-    const r = new Recipe(recipe.title, recipe.image_link, recipe.recipe_link, ingredientArray)
+    let ingredients = this.createArrayOfRecipeIngredients(recipe.ingredients)
+    const r = new Recipe(recipe.title, recipe.image_link, recipe.recipe_link, ingredients)
     r.createRecipeCard();
   }
 }
