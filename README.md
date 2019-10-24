@@ -44,6 +44,7 @@ To get started using this app do the following:
 - Enjoy the app!
 
 [Video Demo](https://youtu.be/NM_70nKM6OE)
+
 [Blog Post](https://dev.to/racheladaw/mindless-meals-a-javascript-and-rails-api-app-50fl)
 
 ##### If you have any feedback for my application, don't hesitate to let me know. Thank you for checking it out!
