@@ -27,11 +27,14 @@ class Recipe {
       ul.appendChild(li)
     }
     cardInfo.appendChild(ul)
+    const footer = document.createElement('div')
+    footer.className = "card-footer"
     const link = document.createElement('a')
     link.href = this.recipeLink
     link.innerHTML = "View Recipe Here"
-    cardInfo.appendChild(link)
+    footer.appendChild(link)
     card.appendChild(cardInfo)
+    card.appendChild(footer)
     document.getElementById('recipe-card-container').appendChild(card)
   }
 }

@@ -1,5 +1,5 @@
 .card {
-  /* Add shadows to create the "card" effect */
+  position: relative;
   box-shadow: 4px 4px 8px 0 #bd910f;
   transition: 0.3s;
   width: 32%;
@@ -20,23 +20,11 @@
 
 .card-info ul {
   list-style-type: circle;
+  padding: 10px;
 }
 
-.card-info a {
-  display: block;
-  text-align: center;
-  color: #b83d14;
-  font-family: helvetica;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.card-info a:hover {
-  text-decoration: underline;
-}
-
-.card-info a:active {
-  color: black;
+.card-info ul li {
+  margin-left: 20px;
 }
 
 .card img {
@@ -120,5 +108,27 @@ input[type=submit] {
 
 #filter-drop-down {
   text-align: center;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.card-footer {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.card-footer a {
+  color: #b83d14;
+  font-family: helvetica;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.card-footer a:hover {
+  text-decoration: underline;
+}
+
+.card-footer a:active {
+  color: black;
 }
